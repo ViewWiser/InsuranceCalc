@@ -1,0 +1,82 @@
+<div class="wrapper">
+    <div class="page-header">
+        <p class="title">Critical Illness Insurance Calculator</p>
+        <p class="subtitle">Adjust the sliders to estimate the coverage amount you may need.</p>
+    </div>
+    <br><br>
+    <div class="row page-main">
+        <div class="col-md-4">
+            <div>
+                <p class="textCss">Desired Replacement income (after-tax)
+                    <img class="i-icon" src="/assets/images/i_icon.PNG">
+                </p>
+                <p class="displayBox">{{DesiredReplacement | currency:'USD':'symbol':'1.0-0'}} <a class="month">/month</a></p>
+                <mat-slider #slider (change)="updateSetting($event,'DesiredReplacement')" 
+                    step="1" min="0" max="25000" [value]="DesiredReplacement">
+                </mat-slider>
+            </div>
+            <div>
+                <p class="textCss">Out-of-pocket healthcare expenses
+                    <img class="i-icon" src="/assets/images/i_icon.PNG">
+                </p>
+                <p class="displayBox">{{OutofPocketHealthcare | currency:'USD':'symbol':'1.0-0'}}</p>
+                <mat-slider #slider (change)="updateSetting($event,'OutofPocketHealthcare')" 
+                    step="1" min="0" max="25000" [value]="OutofPocketHealthcare">
+                </mat-slider>
+            </div>
+            <div>
+                <p class="textCss">Home modification expenses
+                    <img class="i-icon" src="/assets/images/i_icon.PNG">
+                </p>
+                <p class="displayBox">{{HomeModification | currency:'USD':'symbol':'1.0-0'}}</p>
+                <mat-slider #slider (change)="updateSetting($event,'HomeModification')" 
+                    step="1" min="0" max="25000" [value]="HomeModification">
+                </mat-slider>                
+            </div>
+            <div>
+                <p class="textCss">Medical homecare expenses
+                    <img class="i-icon" src="/assets/images/i_icon.PNG">
+                </p> 
+                <p class="displayBox">{{MedicalHomecare | currency:'USD':'symbol':'1.0-0'}} <a class="month">/month</a></p>
+                <mat-slider #slider (change)="updateSetting($event,'MedicalHomecare')" 
+                    step="1" min="0" max="25000" [value]="MedicalHomecare">
+                </mat-slider>
+            </div>
+            <div>
+                <p class="textCss">Other expenses (transport, childcare, etc)
+                    <img class="i-icon" src="/assets/images/i_icon.PNG">
+                </p>   
+                <p class="displayBox">{{OtherExpenses | currency:'USD':'symbol':'1.0-0'}} <a class="month">/month</a></p>
+                <mat-slider #slider (change)="updateSetting($event,'OtherExpenses')" 
+                    step="1" min="0" max="25000" [value]="OtherExpenses">
+                </mat-slider>
+            </div>
+            <div>
+                <p class="textCss">Additional Info
+                    <img class="plus-icon" src="/assets/images/+icon.PNG">
+                </p>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div>
+                <div class="container row">
+                    <img class="recoveryImg"src="/assets/images/recovery_image.PNG">
+                    <p class="recoveryText">Recovery Period</p>
+                    <p class="recoveryBox2">{{recoveryslider.value}} <a class="monthR">months</a></p>
+                    <mat-slider id="recoverySlider" #recoveryslider (change)="recoveryPeriod($event)" 
+                    step="1" min="6" max="36" [value]="recoveryValue"></mat-slider>
+                </div> 
+            </div>
+
+            <app-bar-chart
+                [DesiredReplacement]="DesiredReplacement"
+                [OutofPocketHealthcare]="OutofPocketHealthcare"
+                [HomeModification]="HomeModification"
+                [MedicalHomecare]="MedicalHomecare"
+                [OtherExpenses]="OtherExpenses"
+                [recoveryValue]="recoveryValue">
+            </app-bar-chart>
+        </div>
+    </div>
+</div>
